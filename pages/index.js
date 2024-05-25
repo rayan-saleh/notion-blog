@@ -1,3 +1,4 @@
+/* eslint-disable react/no-unescaped-entities */
 import { clientConfig } from "@/lib/server/config";
 
 import Container from "@/components/Container";
