@@ -120,6 +120,14 @@ pre[class*='language-'] {
   @apply text-center;
   @apply text-gray-500 dark:text-gray-400;
 }
+.notion-asset-wrapper-image {
+  width: 120%;
+  max-width: 120%;
+  @apply my-6;
+}
+.medium-zoom-image {
+border-radius: 0.5rem;
+}
 .notion-asset-wrapper-tweet iframe {
   @apply bg-day dark:bg-night;
 }
