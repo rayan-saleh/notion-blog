@@ -8,11 +8,11 @@ const BlogPost = ({ post }) => {
   return (
     <Link href={`${BLOG.path}/${post.slug}`}>
       <article key={post.id} className="">
-        <header className="flex flex-col md:flex-row md:items-baseline">
-          <time className="flex-shrink-0 text-gray-600 dark:text-gray-400">
+        <header className="flex md:flex-row md:items-baseline">
+          <time className="flex-shrink-0 mr-2 text-gray-600 dark:text-gray-400">
             <FormattedDate date={post.date} />
           </time>
-          <h2 className="text-lg  mb-2 ml-2 cursor-pointer text-black dark:text-gray-100">
+          <h2 className="text-lg  mb-2 cursor-pointer text-black dark:text-gray-100">
             {post.title}
           </h2>
         </header>
