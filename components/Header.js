@@ -45,7 +45,7 @@ const NavBar = () => {
         <path d="M0 0h24v24H0z" fill="none" />
         <path
           d="M6.94 5a2 2 0 1 1-4-.002 2 2 0 0 1 4 .002zM7 8.48H3V21h4V8.48zm6.32 0H9.34V21h3.94v-6.57c0-3.66 4.77-4 4.77 0V21H22v-7.93c0-6.17-7.06-5.94-8.72-2.91l.04-1.68z"
-          fill-rule="nonzero"
+          fillRule="nonzero"
         />
       </svg>
       </div>
@@ -107,16 +107,16 @@ export default function Header({ navBarTitle, fullWidth }) {
 
   // Favicon
 
-  const resolveFavicon = (fallback) =>
-    !fallback && dark ? "/favicon.dark.png" : "/favicon.png";
-  const [favicon, _setFavicon] = useState(resolveFavicon());
-  const setFavicon = (fallback) => _setFavicon(resolveFavicon(fallback));
+  // const resolveFavicon = (fallback) =>
+  //   !fallback && dark ? "/favicon.dark.png" : "/favicon.png";
+  // const [favicon, _setFavicon] = useState(resolveFavicon());
+  // const setFavicon = (fallback) => _setFavicon(resolveFavicon(fallback));
 
-  useEffect(
-    () => setFavicon(),
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-    [dark]
-  );
+  // useEffect(
+  //   () => setFavicon(),
+  //   // eslint-disable-next-line react-hooks/exhaustive-deps
+  //   [dark]
+  // );
 
   const useSticky = !BLOG.autoCollapsedNavBar;
   const navRef = useRef(/** @type {HTMLDivElement} */ undefined);

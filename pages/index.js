@@ -33,8 +33,9 @@ export default function Blog({ postsToShow, page, showNext }) {
       ))}
       {showNext && <Pagination page={page} showNext={showNext} />}
       <h2 className="text-lg mt-12 mb-2 font-semibold">Bio</h2>
+      {/* for scuba i want a link without underlining it */}
       <p>
-      I'm a product builder focused on Go-To-Market. I’ve helped build/grow <Link href="https://conceptventures.vc/" className="underline" target="_blank">Concept Ventures</Link>, <Link href="https://www.oneday.co.uk/" className="underline" target="_blank">OneDay</Link>, and <Link href="https://elevenlabs.io/" className="underline" target="_blank">ElevenLabs</Link>. I like creating new things, occasionally, I scuba.
+      I'm a product builder focused on Go-To-Market. I’ve helped build/grow <Link href="https://conceptventures.vc/" className="underline" target="_blank">Concept Ventures</Link>, <Link href="https://www.oneday.co.uk/" className="underline" target="_blank">OneDay</Link>, and <Link href="https://elevenlabs.io/" className="underline" target="_blank">ElevenLabs</Link>. I like creating new things, occasionally, I <Link href="https://www.youtube.com/watch?v=NAdQyjpOfrs" className="" target="_blank">scuba</Link>.
       </p>
     </Container>
   );
