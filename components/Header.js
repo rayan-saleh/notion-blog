@@ -1,9 +1,16 @@
 import { forwardRef, useCallback, useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
+import dynamic from "next/dynamic";
 import { useConfig } from "@/lib/config";
 import { useLocale } from "@/lib/locale";
 import useTheme from "@/lib/theme";
+
+// Dynamic import for the animated header to avoid SSR issues with Framer Motion
+const AnimatedHeaderName = dynamic(() => import("./AnimatedHeaderName"), {
+  ssr: false,
+  loading: () => <HeaderNameFallback />
+});
 
 const NavBar = () => {
   const BLOG = useConfig();
@@ -158,9 +165,9 @@ export default function Header({ navBarTitle, fullWidth }) {
 
   return (
     <>
-      <div className="observer-element h-4 md:h-12" ref={sentinelRef}></div>
+      <div className="observer-element h-2 md:h-4" ref={sentinelRef}></div>
       <div
-        className={`sticky-nav group m-auto w-full h-6 flex flex-row justify-between items-center mb-12 py-8 bg-opacity-60 ${
+        className={`sticky-nav group m-auto w-full min-h-[120px] flex flex-row justify-between items-center mb-6 py-4 bg-opacity-60 ${
           !fullWidth ? "max-w-lg px-4" : "px-24"
         }`}
         id="sticky-nav"
@@ -201,8 +208,9 @@ export default function Header({ navBarTitle, fullWidth }) {
   );
 }
 
-const HeaderName = forwardRef(function HeaderName(
-  { siteTitle, siteDescription, postTitle, onClick },
+// Fallback component for SSR
+const HeaderNameFallback = forwardRef(function HeaderNameFallback(
+  { siteTitle, onClick },
   ref
 ) {
   return (
@@ -211,15 +219,24 @@ const HeaderName = forwardRef(function HeaderName(
       className="header-name font-medium text-gray-600 dark:text-gray-300 capture-pointer-events grid-rows-1 grid-cols-1 items-center"
       onClick={onClick}
     >
-      {/* {postTitle && (
-        <span className="post-title row-start-1 col-start-1">{postTitle}</span>
-      )} */}
       <span className="row-start-1 col-start-1">
         <span className="site-title">{siteTitle}</span>
-        {/* <span className="site-description font-normal">
-          , {siteDescription}
-        </span> */}
       </span>
     </p>
   );
+});
+
+const HeaderName = forwardRef(function HeaderName(props, ref) {
+  const [isMounted, setIsMounted] = useState(false);
+
+  useEffect(() => {
+    setIsMounted(true);
+  }, []);
+
+  // Use animated version after mount, fallback during SSR
+  if (!isMounted) {
+    return <HeaderNameFallback ref={ref} {...props} />;
+  }
+
+  return <AnimatedHeaderName ref={ref} {...props} />;
 });
