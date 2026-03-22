@@ -4,7 +4,6 @@ import { clientConfig } from "@/lib/server/config";
 import Container from "@/components/Container";
 import BlogPost from "@/components/BlogPost";
 import Pagination from "@/components/Pagination";
-import Projects from "@/components/Projects";
 import { getAllPosts } from "@/lib/notion";
 import { useConfig } from "@/lib/config";
 import Link from "next/link";
@@ -29,8 +28,7 @@ export default function Blog({ postsToShow, page, showNext }) {
 
   return (
     <>
-{/* <Projects /> */}
-      <Container title={title} description={description}>
+<Container title={title} description={description}>
         <h2 className="text-lg mt-6 mb-2 font-semibold">Notes</h2>
         {postsToShow.map((post) => (
           <BlogPost key={post.id} post={post} />
